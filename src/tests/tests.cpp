@@ -1,8 +1,12 @@
 #include "tests.h"
 #include "../core/BinaryReader.h"
+#include "../core/ReplayParser.h"
 
 #include <cassert>
 #include <iostream>
+#include <string>
+#include <vector>
+#include <stdexcept>
 
 // Kazda funkcja testowa sprawdza jedna rzecz.
 // Gdy dodasz BinaryReader, testy dopisuj tutaj (np. test_read_int_little_endian).
@@ -91,6 +95,11 @@ int run_all_tests()
     string_reading();
     bytes_reading();
     bytes_too_many();
+
+    replay_header_reading();
+    replay_header_truncated();
+    replay_header_negative_length();
+    replay_header_length_too_big();
 
     std::cout << "All tests passed.\n";
     return 0;
