@@ -1,4 +1,5 @@
 #include "tests.h"
+#include "C:\Users\filip\Desktop\ROsu\src\core\BinaryReader.h"
 
 #include <cassert>
 #include <iostream>
@@ -11,12 +12,53 @@ static void test_sanity()
     assert(1 + 1 == 2); // test startowy: potwierdza, ze mechanizm testow dziala
 }
 
+
+
+static void byte_reading()
+{
+    BinaryReader reader({ 0x01 });
+    //std::cout << static_cast<int>(reader.readByte()) << "\n";
+    assert(reader.readByte() == 1);
+}
+
+static void int_reading()
+{
+    BinaryReader reader({ 0x01, 0x00, 0x00, 0x00 });
+    assert(reader.readInt() == 1);
+}
+
+static void long_reading()
+{
+    BinaryReader reader({ 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 });
+    assert(reader.readLong() == 1);
+}
+
+static void ULEB128_reading()
+{
+    BinaryReader reader({ 0xE5, 0x8E, 0x26 });
+    //std::cout << static_cast<uint32_t>(reader.readULEB128()) << "\n";
+    assert(reader.readULEB128() == 624485);
+}
+
+static void string_reading()
+{
+    BinaryReader reader({ 0x0b, 0x04, 'o', 's', 'u', '!' });
+    //std::cout << reader.readString() << "\n";
+    assert(reader.readString() == "osu!");
+}
+
 int run_all_tests()
 {
     // UWAGA: w konfiguracji Release assert() jest wylaczony (NDEBUG),
     // wiec testy uruchamiaj w Debug.
     test_sanity();
 
-    std::cout << "Wszystkie testy przeszly.\n";
+    byte_reading();
+    int_reading();
+    long_reading();
+    ULEB128_reading();
+    string_reading();
+
+    std::cout << "All tests passed.\n";
     return 0;
 }
