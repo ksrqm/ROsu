@@ -36,7 +36,7 @@ ReplayHeader readReplayHeader(BinaryReader& reader)
 
 	int32_t CompressedLenght = reader.readInt();
 	if (CompressedLenght > 0) {
-		h.compressedData = vector<uint8_t>(CompressedLenght);
+		h.compressedData = std::vector<uint8_t>(CompressedLenght);
 	}
 
 	h.scoreID = static_cast<uint64_t>(reader.readLong());
