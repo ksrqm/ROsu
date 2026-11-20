@@ -97,6 +97,8 @@ int run_all_tests()
     bytes_reading();
     bytes_too_many();
 
+    run_replay_header_tests();
+
     std::cout << "All tests passed.\n";
     return 0;
 }
