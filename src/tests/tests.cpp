@@ -96,11 +96,6 @@ int run_all_tests()
     bytes_reading();
     bytes_too_many();
 
-    replay_header_reading();
-    replay_header_truncated();
-    replay_header_negative_length();
-    replay_header_length_too_big();
-
     std::cout << "All tests passed.\n";
     return 0;
 }

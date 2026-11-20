@@ -1,11 +1,9 @@
-// ===== Replay header tests =====
-// W tests.cpp dolacz na gorze:
-//   #include "../core/ReplayParser.h"
-//   #include <string>
-//   #include <vector>
-//   #include <stdexcept>
-
-// --- pomocnicze: dokladaja bajty w kolejnosci little-endian (odwrotnosc BinaryReader) ---
+#include "../core/ReplayParser.h"
+#include <cassert>
+#include <cstdint>
+#include <stdexcept>
+#include <string>
+#include <vector>
 
 static void appendByte(std::vector<uint8_t>& v, uint8_t x)
 {
@@ -153,8 +151,10 @@ static void replay_header_length_too_big()
     assert(thrown);
 }
 
-// W run_all_tests() dopisz:
-//   replay_header_reading();
-//   replay_header_truncated();
-//   replay_header_negative_length();
-//   replay_header_length_too_big();
+void run_replay_header_tests()
+{
+    replay_header_reading();
+    replay_header_truncated();
+    replay_header_negative_length();
+    replay_header_length_too_big();
+}
