@@ -107,12 +107,12 @@ public:
 
         for (size_t i = 0; i < count; i++) {
             result.push_back(data_[pos_ + i]); // copy indexes i
-            
-            if (count > data_.size() - pos_)
-            {
-                throw std::out_of_range("End of file");
-            }
         }
+
+        if (count > data_.size() - pos_) {
+            throw std::out_of_range("End of file");
+        }
+
         pos_ += count;
 
         return result;
