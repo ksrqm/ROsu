@@ -1,6 +1,7 @@
 #include "tests.h"
-#include "../core/BinaryReader.h"
-#include "../core/ReplayParser.h"
+
+#include "src/core/BinaryReader.h"
+#include "src/core/ReplayParser.h"
 
 #include <cassert>
 #include <iostream>

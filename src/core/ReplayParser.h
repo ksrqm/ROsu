@@ -1,5 +1,6 @@
 #pragma once
-#include "../core/BinaryReader.h"
-#include "../core/ReplayHeader.h"
+
+#include "src/core/BinaryReader.h"
+#include "src/core/ReplayHeader.h"
 
 ReplayHeader readReplayHeader(BinaryReader& reader);

@@ -1,4 +1,4 @@
-#include "../core/ReplayParser.h"
+#include "src/core/ReplayParser.h"
 #include <vector>
 
 ReplayHeader readReplayHeader(BinaryReader& reader)

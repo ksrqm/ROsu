@@ -1,4 +1,5 @@
-#include "../core/ReplayParser.h"
+#include "src/core/ReplayParser.h"
+
 #include <cassert>
 #include <cstdint>
 #include <stdexcept>
