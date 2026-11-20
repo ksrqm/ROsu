@@ -34,12 +34,14 @@ ReplayHeader readReplayHeader(BinaryReader& reader)
 
 	h.timeStamp = static_cast<int64_t>(reader.readLong());
 
-	int32_t CompressedLenght = reader.readInt();
-	if (CompressedLenght > 0) {
-		h.compressedData = std::vector<uint8_t>(CompressedLenght);
+	int32_t compressedLength = reader.readInt();
+	if (compressedLength < 0)
+	{
+		throw std::runtime_error("Invalid compressed data length");
 	}
-	else {
-		throw std::runtime_error("Invalid lenght indicator")
+	if (compressedLength > 0)
+	{
+		h.compressedData = reader.readBytes(static_cast<size_t>(compressedLength));
 	}
 
 	h.scoreID = static_cast<uint64_t>(reader.readLong());
