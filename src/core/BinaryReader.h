@@ -100,6 +100,24 @@ public:
 
     }
 
+    std::vector<uint8_t> readBytes(size_t count)
+    {
+        std::vector<uint8_t> result;
+        result.reserve(count); //reserve space for [count] bytes
+
+        for (size_t i = 0; i < count; i++) {
+            result.push_back(data_[pos_ + i]); // copy indexes i
+            
+            if (count > data_.size() - pos_)
+            {
+                throw std::out_of_range("End of file");
+            }
+        }
+        pos_ += count;
+
+        return result;
+    }
+
 private:
     // vector that holds a 8 bit intiger
     std::vector<uint8_t> data_;

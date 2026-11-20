@@ -47,6 +47,24 @@ static void string_reading()
     assert(reader.readString() == "osu!");
 }
 
+static void bytes_reading()
+{
+    BinaryReader reader({ 0x01, 0x02 });
+    std::vector<uint8_t> bytes = reader.readBytes(2);
+    std::vector<uint8_t> expected = { 0x01, 0x02 };
+
+    for (uint8_t b : bytes) {
+        std::cout << static_cast<int>(b) << " ";
+    }
+    for (uint8_t e : expected) {
+        std::cout << static_cast<int>(e) << " ";
+    }
+
+    assert(bytes == expected);
+
+}
+
+
 int run_all_tests()
 {
     // UWAGA: w konfiguracji Release assert() jest wylaczony (NDEBUG),
@@ -58,6 +76,7 @@ int run_all_tests()
     long_reading();
     ULEB128_reading();
     string_reading();
+    bytes_reading();
 
     std::cout << "All tests passed.\n";
     return 0;
