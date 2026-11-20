@@ -1,5 +1,5 @@
 #include "tests.h"
-#include "C:\Users\filip\Desktop\ROsu\src\core\BinaryReader.h"
+#include "../core/BinaryReader.h"
 
 #include <cassert>
 #include <iostream>
