@@ -53,15 +53,28 @@ static void bytes_reading()
     std::vector<uint8_t> bytes = reader.readBytes(2);
     std::vector<uint8_t> expected = { 0x01, 0x02 };
 
+    /*
     for (uint8_t b : bytes) {
         std::cout << static_cast<int>(b) << " ";
     }
     for (uint8_t e : expected) {
         std::cout << static_cast<int>(e) << " ";
     }
+    */
 
     assert(bytes == expected);
 
+}
+
+static void bytes_too_many()
+{
+    BinaryReader reader({ 0x01, 0x02 });
+    reader.readBytes(2);
+
+    bool thrown = false;
+    try { reader.readBytes(1); }
+    catch (const std::out_of_range&) { thrown = true; }
+    assert(thrown);
 }
 
 
@@ -77,6 +90,7 @@ int run_all_tests()
     ULEB128_reading();
     string_reading();
     bytes_reading();
+    bytes_too_many();
 
     std::cout << "All tests passed.\n";
     return 0;

@@ -102,19 +102,12 @@ public:
 
     std::vector<uint8_t> readBytes(size_t count)
     {
-        std::vector<uint8_t> result;
-        result.reserve(count); //reserve space for [count] bytes
-
-        for (size_t i = 0; i < count; i++) {
-            result.push_back(data_[pos_ + i]); // copy indexes i
-        }
-
         if (count > data_.size() - pos_) {
             throw std::out_of_range("End of file");
         }
 
+        std::vector<uint8_t> result(data_.begin() + pos_, data_.begin() + pos_ + count);
         pos_ += count;
-
         return result;
     }
 

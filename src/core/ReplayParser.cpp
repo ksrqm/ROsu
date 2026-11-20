@@ -38,6 +38,9 @@ ReplayHeader readReplayHeader(BinaryReader& reader)
 	if (CompressedLenght > 0) {
 		h.compressedData = std::vector<uint8_t>(CompressedLenght);
 	}
+	else {
+		throw std::runtime_error("Invalid lenght indicator")
+	}
 
 	h.scoreID = static_cast<uint64_t>(reader.readLong());
 
