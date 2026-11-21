@@ -25,10 +25,16 @@ AppWindow::AppWindow(int width, int height, const char* title)
 	glfwMakeContextCurrent(window_);
 	glfwSwapInterval(1);
 
+	
+}
+
+AppWindow::~AppWindow()
+{
 	if (window_ != nullptr) {
 		glfwDestroyWindow(window_);
-		glfwTerminate();
+		window_ = nullptr;
 	}
+	glfwTerminate();
 }
 
 void AppWindow::run()

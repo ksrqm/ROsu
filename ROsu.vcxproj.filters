@@ -33,6 +33,9 @@
     <ClCompile Include="src\tests\tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\GUI\AppWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\FileUtils\osrLoader.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\tests\tests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI\AppWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

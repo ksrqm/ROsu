@@ -1,25 +1,29 @@
 #include <cstring>
 #include <iostream>
 
+#include "src/GUI/AppWindow.h"
 #include "src/tests/FileChecks/FileChecker.h"
 #include "src/tests/tests.h"
 
 int main(int argc, char** argv)
 {
-    if (argc > 1 && std::strcmp(argv[1], "--test") == 0)
-    {
-        return run_all_tests();
-    }
-
-    if (argc < 2)
-    {
-        std::cout << "Usage: ROsu <replay.osr>\n";
-        return 1;
-    }
-
     try
     {
-        printReplayInfo(argv[1]);
+        // ROsu --test        -> core tests
+        if (argc > 1 && std::strcmp(argv[1], "--test") == 0)
+        {
+            return run_all_tests();
+        }
+
+        // ROsu <plik.osr>    -> wypisz naglowek w konsoli (diagnostyka)
+        if (argc > 1)
+        {
+            printReplayInfo(argv[1]);
+        }
+
+        // ROsu               -> okno GUI
+        AppWindow window(1280, 720, "ROsu");
+        window.run();
     }
     catch (const std::exception& e)
     {
