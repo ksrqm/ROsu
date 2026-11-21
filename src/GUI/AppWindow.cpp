@@ -1,12 +1,21 @@
 #include "src/GUI/AppWindow.h"
+
 #include "src/GUI/components/DragAndDrop/DragAndDrop.h"
+#include "src/GUI/components/ReplayInfo/ReplayInfo.h"
+
 #include "src/GUI/Theme/Theme.h"
+
+#include "src/core/FileUtils/osrLoader.h"
+
+#include "src/core/BinaryReader.h"
+#include "src/core/ReplayParser.h"
 
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 #include <GLFW/glfw3.h>
 #include <stdexcept>
+
 
 AppWindow::AppWindow(int width, int height, const char* title)
 {
@@ -73,12 +82,23 @@ void AppWindow::handleUploadedFile(const std::filesystem::path& path)
 
 	if (ext != ".osr") {
 		selectedReplayPath_.reset();
-		statusMessage_ = "Bad format (" + ext + "). choose .osr.";
+		header_.reset();
+		statusMessage_ = "Bad format (" + ext + "). Choose .osr.";
 		return;
 	}
 
-	selectedReplayPath_ = path;
-	statusMessage_.clear();
+	try {
+		BinaryReader reader(loadFile(path));
+		header_ = readReplayHeader(reader);
+
+		selectedReplayPath_ = path;
+		statusMessage_.clear();
+	}
+	catch (const std::exception& e) {
+		header_.reset();
+		selectedReplayPath_.reset();
+		statusMessage_ = e.what();
+	}
 }
 
 void AppWindow::run()
@@ -109,6 +129,9 @@ void AppWindow::run()
 		if (auto chosenPath = gui::renderDropZone(selectedReplayPath_, statusMessage_); chosenPath.has_value()) {
 			handleUploadedFile(*chosenPath);
 		}
+
+		ImGui::Spacing();
+		gui::renderReplayInfo(header_);
 
 		ImGui::EndChild();
 

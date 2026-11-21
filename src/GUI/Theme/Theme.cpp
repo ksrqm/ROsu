@@ -16,7 +16,6 @@ namespace gui {
                 static ImVector<ImWchar> glyphRanges;
                 ImFontGlyphRangesBuilder builder;
                 builder.AddRanges(io.Fonts->GetGlyphRangesDefault());
-                builder.AddText("¥ÆÊ£ÑÓŒ¯¹æê³ñóœŸ¿");
                 builder.BuildRanges(&glyphRanges);
 
                 // Pierwsza dodana czcionka staje siê domyœln¹ w ca³ym ImGui

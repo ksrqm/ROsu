@@ -1,4 +1,5 @@
 #pragma once
+#include "src/core/ReplayHeader.h"
 
 #include <filesystem>
 #include <optional>
@@ -22,6 +23,7 @@ private:
 
     std::optional<std::filesystem::path> selectedReplayPath_;
     std::string statusMessage_;
+    std::optional<ReplayHeader> header_;
 
     void handleUploadedFile(const std::filesystem::path& path);
     static void dropCallback(GLFWwindow* window, int count, const char** paths);
