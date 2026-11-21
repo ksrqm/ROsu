@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 #data for testing
 data/
+
+#vcpkg_lib
+vcpkg_installed/

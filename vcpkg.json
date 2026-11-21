@@ -1,0 +1,16 @@
+{
+  "name": "osu-replay-renderer",
+  "version-string": "0.1.0",
+  "dependencies": [
+    "glfw3",
+    {
+      "name": "imgui",
+      "features": [
+        "glfw-binding",
+        "opengl3-binding"
+      ]
+    },
+    "liblzma"
+  ],
+  "builtin-baseline": "504152f3f2a9fc3290c4214d05ff641be2c9b4c1"
+}
