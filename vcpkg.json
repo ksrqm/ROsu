@@ -10,6 +10,5 @@
     "liblzma",
     "portable-file-dialogs"
   ],
-  ],
   "builtin-baseline": "504152f3f2a9fc3290c4214d05ff641be2c9b4c1"
 }

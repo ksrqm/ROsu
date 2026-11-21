@@ -59,7 +59,7 @@ void AppWindow::dropCallback(GLFWwindow* window, int count, const char** paths)
 	auto* app = static_cast<AppWindow*>(glfwGetWindowUserPointer(window));
 	if (app) {
 		std::filesystem::path droppedPath(reinterpret_cast<const char8_t*>(paths[0]));
-		app->handleDroppedOrSelectedFile(droppedPath);
+		app->handleUploadedFile(droppedPath);
 	}
 }
 
@@ -119,10 +119,10 @@ void AppWindow::run()
 		else if (selectedReplayPath_.has_value()) {
 			auto u8Name = selectedReplayPath_->filename().u8string();
 			std::string fileName(reinterpret_cast<const char*>(u8Name.c_str()));
-			ImGui::Text("Za³adowano: %s", fileName.c_str());
+			ImGui::Text("Loaded: %s", fileName.c_str());
 		}
 		else {
-			ImGui::TextDisabled("Brak wybranego pliku.");
+			ImGui::TextDisabled("No file");
 		}
 
 		ImGui::End();

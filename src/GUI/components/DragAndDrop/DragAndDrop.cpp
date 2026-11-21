@@ -10,14 +10,14 @@ namespace gui {
         std::optional<std::filesystem::path> chosenFile;
 
         ImGui::BeginChild("DropZone", ImVec2(-1.0f, 140.0f), ImGuiChildFlags_Borders);
-        ImGui::TextDisabled("Przeci¹gnij i upuœæ plik .osr gdziekolwiek w oknie");
+        ImGui::TextDisabled("Drop a file");
         ImGui::Spacing();
 
-        if (ImGui::Button("Wybierz plik .osr...", ImVec2(180.0f, 36.0f))) {
+        if (ImGui::Button("Choose file .osr...", ImVec2(180.0f, 36.0f))) {
             auto selection = pfd::open_file(
-                "Wybierz powtórkê osu!",
+                "replay osu!",
                 "",
-                { "Pliki powtórek osu! (*.osr)", "*.osr" }
+                { " (*.osr)", "*.osr" }
             ).result();
 
             if (!selection.empty()) {

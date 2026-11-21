@@ -141,6 +141,7 @@
     <ClCompile Include="src\core\FileUtils\osrLoader.cpp" />
     <ClCompile Include="src\core\ReplayParser.cpp" />
     <ClCompile Include="src\GUI\AppWindow.cpp" />
+    <ClCompile Include="src\GUI\components\DragAndDrop\DragAndDrop.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\tests\FileChecks\FileChecker.cpp" />
     <ClCompile Include="src\tests\ReplayHeadertests.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="src\core\ReplayHeader.h" />
     <ClInclude Include="src\core\ReplayParser.h" />
     <ClInclude Include="src\GUI\AppWindow.h" />
+    <ClInclude Include="src\GUI\components\DragAndDrop\DragAndDrop.h" />
     <ClInclude Include="src\tests\FileChecks\FileChecker.h" />
     <ClInclude Include="src\tests\tests.h" />
   </ItemGroup>
